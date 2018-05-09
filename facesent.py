@@ -8,7 +8,7 @@ from email.mime.multipart import MIMEMultipart
 import os
 import smtplib
 
-#mail info 
+#mail info
 user='user@gmail.com'
 pwd='password'
 From='user@gmail.com'
@@ -16,12 +16,23 @@ To='receipient@gmail.com'
 
 image_filename = "tmpimage.jpg"
 
+# TODO split operations into functions
+# TODO implement argparse which can set:
+# - email
+# - delay to start
+# - unlock password
+# - detect mode (password, mouse location)
+# - detection timeout
+# - reaction mode (email, track, lock, shut down)
+# - read cofig file with the same as the above settings
+
 currently_pressed_key = None
 start_time= time.time()
 inp=[]
 #Take user keystrokes, if 5 seconds pass or space is pressed key pressed are
 #compared with testinp at the end of this function to check if it is the
 #required password, if not we start the face recognition part
+
 while True:
     def on_press(key):
         if key == Key.space or int(time.time()-start_time) > int(5):
@@ -35,6 +46,7 @@ while True:
     if int(time.time()-start_time) > int(0):
         break
 
+# TODO move input check inside the loop
 inp=''.join(inp)
 #required password to check
 testinp='asdf'
@@ -45,9 +57,12 @@ if inp != testinp:
     #capture image from camera (0)
     cap = cv2.VideoCapture(0)
     framecounter=0
+    
+    # TODO collect more than one images
+    
     while framecounter ==0:
         ret, frame = cap.read()
-        gray=cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)       
+        gray=cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
         faces=face_cascade.detectMultiScale(gray, 1.3, 5)
 #if a face is detected we capture the image and send the mail. Then the camera
 #and mailserver connection are closed and the script is terminated
@@ -72,7 +87,7 @@ if inp != testinp:
             server.login(user, pwd)
             server.sendmail(From, To, msg.as_string())
             server.close()
-            
+
     cap.release()
     cv2.destroyAllWindows()
 
