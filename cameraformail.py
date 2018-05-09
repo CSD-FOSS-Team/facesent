@@ -7,13 +7,15 @@ from email.mime.image import MIMEImage
 from email.mime.multipart import MIMEMultipart
 import os
 import smtplib
+
 #mail info 
 user='user@gmail.com'
 pwd='password'
 From='user@gmail.com'
 To='receipient@gmail.com'
 
-#
+image_filename = "tmpimage.jpg"
+
 currently_pressed_key = None
 start_time= time.time()
 inp=[]
@@ -25,12 +27,14 @@ while True:
         if key == Key.space or int(time.time()-start_time) > int(5):
             return False
         print('{0} pressed'.format(key))
-        inp.append(key.char)
+        if hasattr(key, 'char'):
+            inp.append(key.char)
     with Listener(
         on_press=on_press) as listener:
-        listener.join()        
+        listener.join()
     if int(time.time()-start_time) > int(0):
         break
+
 inp=''.join(inp)
 #required password to check
 testinp='asdf'
@@ -48,16 +52,19 @@ if inp != testinp:
 #if a face is detected we capture the image and send the mail. Then the camera
 #and mailserver connection are closed and the script is terminated
         for (x,y,w,h) in faces:
-            cv2.imwrite('testimage3.jpg', frame)
+            cv2.imwrite(image_filename, frame)
             framecounter=1
-            img_data = open('testimage3.jpg','rb').read()
+
+            print("Skipped email!")
+            break
+            img_data = open(image_filename,'rb').read()
             msg= MIMEMultipart()
             msg['Subject'] = 'Laptop Login'
             msg['From']='mail@gmail.com'
             msg['To']='mail@gmail.com'
             text = MIMEText('Someone has your laptop')
             msg.attach(text)
-            image=MIMEImage(img_data, name= os.path.basename('testimage3.jpg'))
+            image=MIMEImage(img_data, name= os.path.basename(image_filename))
             msg.attach(image)
             server = smtplib.SMTP("smtp.gmail.com", 587)
             server.ehlo()
