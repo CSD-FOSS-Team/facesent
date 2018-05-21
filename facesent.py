@@ -15,7 +15,8 @@ pwd='password'
 From='user@gmail.com'
 To='receipient@gmail.com'
 
-parser = argparse.ArgumentParser(description='facesent - face detecting sentinel')
+parser = argparse.ArgumentParser(prog='facesent',
+        description='facesent - face detecting sentinel')
 
 parser.add_argument('-d', '--delay', default=3, type=int,
                     help="delay before start (default 3s)", metavar="S")

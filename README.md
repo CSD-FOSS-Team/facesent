@@ -18,9 +18,23 @@ Image placeholder
 
 Build with **Python 3** and **OpenCV**
 
-## Install
+## Usage
 
-?
+```
+usage: facesent [-h] [-d S] [-u S] [-p P] [-i F] [-c F]
+
+facesent - face detecting sentinel
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -d S, --delay S       delay before start (default 3s)
+  -u S, --unlock-period S
+                        period before locking (default 5s)
+  -p P, --password P    delay before start (default "asdf")
+  -i F, --image F       file name of the output image (default "tmpimage.jpg")
+  -c F, --classifier F  file name of the classifier (default
+                        "haarcascade_frontalface_alt.xml")
+```
 
 ## Contribute
 
