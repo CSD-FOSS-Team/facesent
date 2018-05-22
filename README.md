@@ -1,6 +1,9 @@
 # facesent - *face detecting sentinel*
 
-**facesent**  is a facial recognition sentinel and notifier for the desktop
+**facesent** is a facial recognition sentinel and notifier for the desktop
+
+![](https://img.shields.io/badge/python-3.3,%203.4,%203.5,%203.6-blue.svg)
+![](https://img.shields.io/badge/license-GPLv2-lightgrey.svg)
 
 ```TEXT
 
@@ -18,9 +21,12 @@ Image placeholder
 
 Build with **Python 3** and **OpenCV**
 
+Start **facesent** by running `python3 facesent.py`.
+
 ## Usage
 
 ```
+$ python3 facesent.py --help
 usage: facesent [-h] [-d S] [-u S] [-p P] [-i F] [-c F]
 
 facesent - face detecting sentinel
@@ -46,11 +52,13 @@ Not necessary but suggested to pass your code from the pep8 check.
 
 ## License
 
-All files in this repository are Copyright (c) 2018 **sentinel author list**.
+All files in this repository are Copyright (c) 2018 **facesent author list**.
 
-Code in this repository is licensed under ?
+Code in this repository is licensed under [GNU General Public License v2.0](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html).
 
 Data in this repository is licensed under the
 [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/).
 
-**sentinel author list** can be determined via `git shortlog -sne`.
+Exception are the files that contain other copyright notice.
+
+**facesent author list** can be determined via `git shortlog -sne`.
