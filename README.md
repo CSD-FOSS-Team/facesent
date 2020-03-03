@@ -42,6 +42,10 @@ optional arguments:
                         "haarcascade_frontalface_alt.xml")
 ```
 
+### Gmail troubleshooting
+
+If the authentication is failing with a gmail email address. Try following the link [https://accounts.google.com/DisplayUnlockCaptcha](https://accounts.google.com/DisplayUnlockCaptcha), click Continue and then retry the script.
+
 ## Contribute
 
 We accept Pull requests!
